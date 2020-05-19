@@ -1,0 +1,55 @@
+{% extends 'bloogapp/base.html' %}
+{% block parentblock %}
+<style media="screen">
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 220px;
+  align:left;
+}
+.one{
+    text-align: right;
+    padding-left:70px;
+}
+.fa-trash:before {
+    padding-left: 740px;
+    content: "\f1f8";
+}
+</style>
+{% if msg%}
+
+    <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{msg}}</strong>
+
+    </div>
+
+  {%endif%}
+
+{% if images %}
+   {% for img in images %}<br>
+   <div class="container">
+     <div class="row">
+       <div class="col-sm-4">
+       <img src="{{img.image.url}}">
+       </div>
+       <div class="col-sm-8">
+        <center> <h3> {{img.title}}</h3></center>
+        {{img.description}}<br>
+        By {{img.author}}
+       {{img.upload_date | timesince}}
+       <p>
+        <a  href="/detail/{{img.id}}" >Read More</a>
+      <p>
+        {% ifequal request.user.username img.author %}
+          <a href="/delete/{{ img.id }}" onclick="return confirm('Are You Sure You Want To Delete This Item?')"><i class="fas fa-trash"></i></a>
+        {% endifequal %}
+        </div>
+
+      </div>
+    </div>
+   {% endfor %}
+{% endif %}
+{% endblock %}

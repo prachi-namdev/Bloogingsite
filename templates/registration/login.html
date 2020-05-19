@@ -1,0 +1,13 @@
+
+{% extends  'bloogapp/base.html' %}
+
+  {% block parentblock %}
+{% load crispy_forms_tags %}
+
+<form  method="post">
+{{form| crispy}}
+{%csrf_token%}
+<input type="submit" value="Login" />
+</form>
+
+   {%endblock%}

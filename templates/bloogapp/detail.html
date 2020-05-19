@@ -1,0 +1,34 @@
+{% extends 'bloogapp/base.html' %}
+{% block parentblock %}
+
+<style media="screen">
+  body{
+    background:#555357;
+  }
+img {
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 250px;
+  align:left;
+}
+h3{
+    text-align: left;
+  padding-left:1px;
+  color : white;
+}
+h6{
+  color : white;  
+}
+</style>
+<body>
+{% if images %}<br>
+      <h3>DETAILS....</h3>
+        <h3>ID : {{images.id}}</h3>
+                 <h6>{{images.description}}</h6><br><br>
+      <h3>AUTHOR : By {{images.author}}</h3>
+      <img src="{{images.image.url}}">
+
+{% endif %}
+</body>
+{% endblock %}
